@@ -12,6 +12,9 @@
     <item android:id="@+id/support"
         android:title="Support"/>
 
+    <item android:id="@+id/cred"
+        android:title="Credits"/>
+
     <item android:id="@+id/exit"
         android:icon="@drawable/ic_exit"
         android:title="Exit"/>

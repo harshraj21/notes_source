@@ -18,13 +18,16 @@ public class AboutActivity extends AppCompatActivity {
         setTitle("About US");
         getSupportActionBar().hide();
 
+        Bundle bundle = getIntent().getExtras();
+        String abt = bundle.getString("abt");
+
         webView = findViewById(R.id.aboutwv);
 
         try {
             webView = new WebView(this);
             webView.getSettings().setJavaScriptEnabled(true);
             webView.setWebViewClient(new WebViewClient());
-            webView.loadUrl("http://haxgg-com.stackstaging.com/notes/about.html");
+            webView.loadUrl(abt);
             //webView.addJavascriptInterface(new MyJavascriptInterface(this), "Android");
             setContentView(webView);
         }

@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SupportActivity"></activity>
+        <activity android:name=".CreditsActivity"></activity>
+        <activity android:name=".SupportActivity" />
         <activity android:name=".AccActivity" />
         <activity android:name=".EleActivity" />
         <activity android:name=".AeroActivity" />

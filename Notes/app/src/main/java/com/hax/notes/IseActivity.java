@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -30,6 +31,7 @@ public class IseActivity extends AppCompatActivity implements NavigationView.OnN
     GridView gridView;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle mToggle;
+    //TextView tv;
 
     DatabaseReference reference;
     //RecyclerView recyclerView;
@@ -44,6 +46,17 @@ public class IseActivity extends AppCompatActivity implements NavigationView.OnN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ise);
         setTitle("Ise Branch");
+        Bundle bundle = getIntent().getExtras();
+        String uname = bundle.getString("uname");
+
+        //tv = findViewById(R.id.name);
+
+        NavigationView navigationView = findViewById(R.id.nav_view1);
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = headerView.findViewById(R.id.name);
+        navUsername.setText(uname);
+
+        //tv.setText(uname);
 
 
 //        a="https://github.com/harshraj21/Notes/raw/master/Dms%20mse%203.pdf";
@@ -60,7 +73,7 @@ public class IseActivity extends AppCompatActivity implements NavigationView.OnN
         //y=0.0;
 
         drawer = findViewById(R.id.drawer_layout1);
-        NavigationView navigationView = findViewById(R.id.nav_view1);
+        //NavigationView navigationView = findViewById(R.id.nav_view1);
         navigationView.setNavigationItemSelectedListener(this);
 
         mToggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);

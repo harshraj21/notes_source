@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +14,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,26 +44,34 @@ public class UpdateActivity extends AppCompatActivity {
     TextView cver,sver;
     public Button btn;
     private String sversion;
+    WebView webView;
+    String durl;
 
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference mRootReference = firebaseDatabase.getReference();
+    private DatabaseReference mChildReference = mRootReference.child("Status/version");
+    private DatabaseReference mChildReference1 = mRootReference.child("Status/changelog");
+    private DatabaseReference mChildReference2 = mRootReference.child("Status/update");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
-        setTitle("Updater");
+        setTitle("Updates & Changelogs");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Bundle bundle = getIntent().getExtras();
-        String vers = bundle.getString("vers");
-        sversion = vers;
+
+        webView = findViewById(R.id.clogwv);
 
         cver = findViewById(R.id.cversion);
         sver = findViewById(R.id.sversion);
 
         cver.setText("Current Version: " + cversion);
-        sver.setText("Server Version: " + sversion);
+        sver.setText("Server Version: null");
 
         btn = findViewById(R.id.update);
+        btn.setVisibility(View.GONE);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +90,82 @@ public class UpdateActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mChildReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                //sversion = dataSnapshot.getValue(String.class);
+//                sversion = dataSnapshot.getValue(String.class);
+//                sver.setText("Server Version: " + sversion);
+//                btn.setVisibility(View.VISIBLE);
+                durl = dataSnapshot.getValue(String.class);
+                //sver.setText("Server Version: " + sversion);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        mChildReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                //sversion = dataSnapshot.getValue(String.class);
+                sversion = dataSnapshot.getValue(String.class);
+                sver.setText("Server Version: " + sversion);
+                btn.setVisibility(View.VISIBLE);
+                //sver.setText("Server Version: " + sversion);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        mChildReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                //sversion = dataSnapshot.getValue(String.class);
+//                sversion = dataSnapshot.getValue(String.class);
+//                sver.setText("Server Version: " + sversion);
+//                btn.setVisibility(View.VISIBLE);
+                //sver.setText("Server Version: " + sversion);
+                try {
+                    //webView = new WebView(this);
+                    //webView.getSettings().setJavaScriptEnabled(true);
+                    //webView.setWebViewClient(new WebViewClient());
+                    webView.loadUrl(dataSnapshot.getValue(String.class));
+                    //webView.addJavascriptInterface(new MyJavascriptInterface(this), "Android");
+                    //setContentView(webView);
+                }
+                catch (Exception e){
+                    Toast.makeText(UpdateActivity.this, "Something Error",Toast.LENGTH_LONG).show();
+                }
+//              ActionBar actionBar = getActionBar();
+//              actionBar.setDisplayHomeAsUpEnabled(true);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(UpdateActivity.this, MainActivity.class);
+        startActivity(myIntent);
+        return true;
+    }
 
     public static class InternetConnection {
 
@@ -142,7 +230,7 @@ public class UpdateActivity extends AppCompatActivity {
             bar.dismiss();
 
             if(result){
-                Toast.makeText(UpdateActivity.this,"Downloaded Successfully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdateActivity.this,"Downloaded Successfully\nInstall New Update To Continue",Toast.LENGTH_SHORT).show();
             }
             else {
                 Toast.makeText(UpdateActivity.this,"Error in Download",Toast.LENGTH_SHORT).show();
@@ -154,7 +242,7 @@ public class UpdateActivity extends AppCompatActivity {
             Boolean flag = false;
 
             try {
-                URL url = new URL("https://github.com/harshraj21/fun/raw/master/Notes.apk");
+                URL url = new URL(durl);
 
                 HttpURLConnection c = (HttpURLConnection) url.openConnection();
                 c.setRequestMethod("GET");

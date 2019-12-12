@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setTitle("LOGIN");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         emailId = findViewById(R.id.uname2);
@@ -80,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 else{
                                     Intent intToHome = new Intent(LoginActivity.this,IseActivity.class);
+                                    intToHome.putExtra("uname",emailId.getText().toString());
                                     startActivity(intToHome);
                                 }
                                 progressDialog.dismiss();
@@ -97,4 +101,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(myIntent);
+        return true;
+    }
+
 }
