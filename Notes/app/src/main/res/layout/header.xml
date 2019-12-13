@@ -6,21 +6,21 @@
     android:background="@drawable/pexel"
     android:padding="20sp">
 
-    <ImageView
-        android:paddingTop="10sp"
-        android:paddingLeft="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round"/>
+<!--    <ImageView-->
+<!--        android:paddingTop="10sp"-->
+<!--        android:paddingLeft="20sp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@mipmap/ic_launcher_round"/>-->
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="8sp"
-        android:text="Username"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/name"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingTop="8sp"-->
+<!--        android:text="Username"-->
+<!--        android:textAppearance="@style/TextAppearance.AppCompat.Body1"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="18sp" />-->
 
 </LinearLayout>

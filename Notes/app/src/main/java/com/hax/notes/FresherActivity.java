@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MechActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class FresherActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     GridView gridView;
     private DrawerLayout drawer;
@@ -44,14 +44,14 @@ public class MechActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mech);
-        setTitle("Mechanical Branch");
+        setContentView(R.layout.activity_fresher);
+        setTitle("Freshers");
 //        Bundle bundle = getIntent().getExtras();
 //        String uname = bundle.getString("uname");
 
         //tv = findViewById(R.id.name);
 
-        NavigationView navigationView = findViewById(R.id.nav_view5);
+        NavigationView navigationView = findViewById(R.id.nav_view9);
         //View headerView = navigationView.getHeaderView(0);
         //TextView navUsername = headerView.findViewById(R.id.name);
 //        navUsername.setText(uname);
@@ -69,10 +69,10 @@ public class MechActivity extends AppCompatActivity implements NavigationView.On
 //        j="https://github.com/harshraj21/Notes/raw/master/dms.pdf";
 //        k="https://github.com/harshraj21/Notes/raw/master/CO_Notes.pdf";
 
-        gridView = findViewById(R.id.grid5);
+        gridView = findViewById(R.id.grid9);
 //        z=0.0;
 
-        drawer = findViewById(R.id.drawer_layout5);
+        drawer = findViewById(R.id.drawer_layout9);
         //NavigationView navigationView = findViewById(R.id.nav_view1);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -81,7 +81,7 @@ public class MechActivity extends AppCompatActivity implements NavigationView.On
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Toast.makeText(MechActivity.this,"Mech Branch",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(CseActivity.this,"Cse Branch",Toast.LENGTH_SHORT).show();
 
 
 //        List<Integer> images = new ArrayList<>();
@@ -114,7 +114,7 @@ public class MechActivity extends AppCompatActivity implements NavigationView.On
 //        recyclerView = findViewById(R.id.recvew);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Notes/mech");
+        reference = FirebaseDatabase.getInstance().getReference().child("Notes/fresh");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -134,7 +134,7 @@ public class MechActivity extends AppCompatActivity implements NavigationView.On
                 //strings = new String[urls.size()];
                 //strings = urls.toArray(strings);
 
-                adapter = new NotesAdapter(MechActivity.this, images, names );
+                adapter = new NotesAdapter(FresherActivity.this, images, names );
 
 //                string2 = new String[td.size()];
 //                string2 = td.toArray(string2);
@@ -160,34 +160,12 @@ public class MechActivity extends AppCompatActivity implements NavigationView.On
 //             startActivity(j);
                 switch (i) {
                     case 0:
-                        Intent j = new Intent(MechActivity.this, thsemActivity.class);
-                        j.putExtra("ctx","5");
+                        Intent j = new Intent(FresherActivity.this, FirsemActivity.class);
                         startActivity(j);
                         break;
                     case 1:
-                        Intent k = new Intent(MechActivity.this, fursemActivity.class);
-                        k.putExtra("ctx","5");
+                        Intent k = new Intent(FresherActivity.this, SecsemActivity.class);
                         startActivity(k);
-                        break;
-                    case 2:
-                        Intent m = new Intent(MechActivity.this, fifsemActivity.class);
-                        m.putExtra("ctx","5");
-                        startActivity(m);
-                        break;
-                    case 3:
-                        Intent n = new Intent(MechActivity.this, SixsemActivity.class);
-                        n.putExtra("ctx","5");
-                        startActivity(n);
-                        break;
-                    case 4:
-                        Intent o = new Intent(MechActivity.this, SevsemActivity.class);
-                        o.putExtra("ctx","5");
-                        startActivity(o);
-                        break;
-                    case 5:
-                        Intent p = new Intent(MechActivity.this, EighsemActivity.class);
-                        p.putExtra("ctx","5");
-                        startActivity(p);
                         break;
                 }
 
@@ -202,55 +180,55 @@ public class MechActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()){
             case R.id.ise:
-                Intent a = new Intent(MechActivity.this, IseActivity.class);
+                Intent a = new Intent(FresherActivity.this, IseActivity.class);
                 startActivity(a);
-                Toast.makeText(MechActivity.this,"Ise Branch",Toast.LENGTH_SHORT).show();
+                Toast.makeText(FresherActivity.this,"Ise Branch",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.cse:
-                Intent b = new Intent(MechActivity.this, CseActivity.class);
+                Intent b = new Intent(FresherActivity.this, CseActivity.class);
                 startActivity(b);
-                Toast.makeText(MechActivity.this,"Cse Branch",Toast.LENGTH_SHORT).show();
+                Toast.makeText(FresherActivity.this,"Cse Branch",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.civ:
-                Intent c = new Intent(MechActivity.this, CivActivity.class);
+                Intent c = new Intent(FresherActivity.this, CivActivity.class);
                 startActivity(c);
-                Toast.makeText(MechActivity.this,"Civil Branch",Toast.LENGTH_SHORT).show();
+                Toast.makeText(FresherActivity.this,"Civil Branch",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ece:
-                Intent d = new Intent(MechActivity.this, EceActivity.class);
+                Intent d = new Intent(FresherActivity.this, EceActivity.class);
                 startActivity(d);
-                Toast.makeText(MechActivity.this,"Ece Branch",Toast.LENGTH_SHORT).show();
+                Toast.makeText(FresherActivity.this,"Ece Branch",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.aero:
-                Intent e = new Intent(MechActivity.this, AeroActivity.class);
+                Intent e = new Intent(FresherActivity.this, AeroActivity.class);
                 startActivity(e);
-                Toast.makeText(MechActivity.this,"Aeronautical Branch",Toast.LENGTH_SHORT).show();
+                Toast.makeText(FresherActivity.this,"Aeronautical Branch",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.mech:
-//                Intent f = new Intent(MechActivity.this, MechActivity.class);
-//                startActivity(f);
-//                Toast.makeText(MechActivity.this,"Mechanical Branch",Toast.LENGTH_SHORT).show();
+                Intent f = new Intent(FresherActivity.this, MechActivity.class);
+                startActivity(f);
+                Toast.makeText(FresherActivity.this,"Mechanical Branch",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ele:
-                Intent g = new Intent(MechActivity.this, EleActivity.class);
+                Intent g = new Intent(FresherActivity.this, EleActivity.class);
                 startActivity(g);
-                Toast.makeText(MechActivity.this,"Electrical Branch",Toast.LENGTH_SHORT).show();
+                Toast.makeText(FresherActivity.this,"Electrical Branch",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.acc:
-                Intent h = new Intent(MechActivity.this, AccActivity.class);
+                Intent h = new Intent(FresherActivity.this, AccActivity.class);
                 startActivity(h);
-                Toast.makeText(MechActivity.this,"My Account",Toast.LENGTH_SHORT).show();
+                Toast.makeText(FresherActivity.this,"My Account",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.fre:
-                Intent k = new Intent(MechActivity.this, FresherActivity.class);
-                startActivity(k);
-                Toast.makeText(MechActivity.this,"Freshers",Toast.LENGTH_SHORT).show();
+//                Intent k = new Intent(FresherActivity.this, FresherActivity.class);
+//                startActivity(k);
+//                Toast.makeText(FresherActivity.this,"Freshers",Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.logout:
-                Intent i = new Intent(MechActivity.this, MainActivity.class);
+                Intent i = new Intent(FresherActivity.this, MainActivity.class);
                 startActivity(i);
-                Toast.makeText(MechActivity.this,"Logged Out Successfully.",Toast.LENGTH_LONG).show();
+                Toast.makeText(FresherActivity.this,"Logged Out Successfully.",Toast.LENGTH_LONG).show();
                 break;
         }
 

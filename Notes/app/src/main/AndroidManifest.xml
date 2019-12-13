@@ -18,7 +18,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CreditsActivity"></activity>
+        <activity android:name=".SecsemActivity"></activity>
+        <activity android:name=".FirsemActivity" />
+        <activity android:name=".FresherActivity" />
+        <activity android:name=".EighsemActivity" />
+        <activity android:name=".SevsemActivity" />
+        <activity android:name=".SixsemActivity" />
+        <activity android:name=".fifsemActivity" />
+        <activity android:name=".fursemActivity" />
+        <activity android:name=".thsemActivity" />
+        <activity android:name=".CreditsActivity" />
         <activity android:name=".SupportActivity" />
         <activity android:name=".AccActivity" />
         <activity android:name=".EleActivity" />

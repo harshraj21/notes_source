@@ -51,7 +51,6 @@ public class PdfviewActivity extends AppCompatActivity {
             catch (IOException e){
                 return null;
             }
-
             return inputStream;
         }
 
@@ -60,5 +59,4 @@ public class PdfviewActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         }
     }
-
 }

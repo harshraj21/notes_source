@@ -32,6 +32,10 @@
                 android:icon="@drawable/ic_ise"
                 android:title="ELE"/>
 
+            <item android:id="@+id/fre"
+                android:icon="@drawable/ic_fresh"
+                android:title="FRESHER"/>
+
         </menu>
 
     </item>

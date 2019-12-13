@@ -5,6 +5,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -36,9 +38,9 @@ public class IseActivity extends AppCompatActivity implements NavigationView.OnN
     DatabaseReference reference;
     //RecyclerView recyclerView;
     NotesAdapter adapter;
-    String x;
-    //Double y;
-    String[] strings;
+    String y;
+//    Double z;
+//    String[] strings;
     //String a,b,c,d,f,g,h,j,k;
 
     @Override
@@ -46,15 +48,15 @@ public class IseActivity extends AppCompatActivity implements NavigationView.OnN
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ise);
         setTitle("Ise Branch");
-        Bundle bundle = getIntent().getExtras();
-        String uname = bundle.getString("uname");
+//        Bundle bundle = getIntent().getExtras();
+//        String uname = bundle.getString("uname");
 
         //tv = findViewById(R.id.name);
 
         NavigationView navigationView = findViewById(R.id.nav_view1);
-        View headerView = navigationView.getHeaderView(0);
-        TextView navUsername = headerView.findViewById(R.id.name);
-        navUsername.setText(uname);
+        //View headerView = navigationView.getHeaderView(0);
+        //TextView navUsername = headerView.findViewById(R.id.name);
+//        navUsername.setText(uname);
 
         //tv.setText(uname);
 
@@ -70,7 +72,7 @@ public class IseActivity extends AppCompatActivity implements NavigationView.OnN
 //        k="https://github.com/harshraj21/Notes/raw/master/CO_Notes.pdf";
 
         gridView = findViewById(R.id.grid1);
-        //y=0.0;
+//        z=0.0;
 
         drawer = findViewById(R.id.drawer_layout1);
         //NavigationView navigationView = findViewById(R.id.nav_view1);
@@ -109,7 +111,7 @@ public class IseActivity extends AppCompatActivity implements NavigationView.OnN
 
         final List<Integer> images = new ArrayList<>();
         final List<String> names = new ArrayList<>();
-        final List<String> urls = new ArrayList<>();
+        //final List<String> urls = new ArrayList<>();
 
 //        recyclerView = findViewById(R.id.recvew);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -118,18 +120,28 @@ public class IseActivity extends AppCompatActivity implements NavigationView.OnN
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //List<String> td = (ArrayList<String>) dataSnapshot.getValue();
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
-                    x = dataSnapshot1.getValue(String.class);
-                    names.add(getFileNameFromURL(x).replaceAll("[%20.pdf]"," "));
-                    images.add(R.drawable.notes);
+                    //x = dataSnapshot1.getValue(String.class);
+                    y = dataSnapshot1.getKey();
+                    //y = dataSnapshot1;
+//                    names.add(getFileNameFromURL(x).replaceAll("[%20.pdf]"," "));
+                    names.add(y);
+                    images.add(R.drawable.folder);
                     //int z = Integer.valueOf(y.intValue());
-                    urls.add(x);
+                    //urls.add(x);
                     //y++;
-                    //Toast.makeText(IseActivity.this,y.toString(),Toast.LENGTH_LONG).show();
+//                    Toast.makeText(IseActivity.this,x,Toast.LENGTH_LONG).show();
                 }
-                strings = new String[urls.size()];
-                strings = urls.toArray(strings);
+                //strings = new String[urls.size()];
+                //strings = urls.toArray(strings);
+
                 adapter = new NotesAdapter(IseActivity.this, images, names );
+
+//                string2 = new String[td.size()];
+//                string2 = td.toArray(string2);
+
+//                Toast.makeText(IseActivity.this,string2[0],Toast.LENGTH_LONG).show();
 
                 gridView.setAdapter(adapter);
             }
@@ -145,95 +157,45 @@ public class IseActivity extends AppCompatActivity implements NavigationView.OnN
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Intent j = new Intent(IseActivity.this, PdfviewActivity.class);
-                j.putExtra("url",strings[i]);
-                startActivity(j);
-//                switch (i) {
-//                    case 0:
-//                        Intent i = new Intent(IseActivity.this, PdfviewActivity.class);
-//                        i.putExtra("url",x);
-//                        startActivity(i);
-//                        break;
-//                    case 1:
-//                        Intent i = new Intent(IseActivity.this, PdfviewActivity.class);
-//                        i.putExtra("url",x);
-//                        startActivity(i);
-//                        break;
-//                    case 2:
-//                        Intent i = new Intent(IseActivity.this, PdfviewActivity.class);
-//                        i.putExtra("url",x);
-//                        startActivity(i);
-//                        break;
-//                    case 3:
-//                        Intent i = new Intent(IseActivity.this, PdfviewActivity.class);
-//                        i.putExtra("url",x);
-//                        startActivity(i);
-//                        break;
-//                    case 4:
-//                        Intent i = new Intent(IseActivity.this, PdfviewActivity.class);
-//                        i.putExtra("url",x);
-//                        startActivity(i);
-//                        break;
-//                    case 5:
-//                        Intent i = new Intent(IseActivity.this, PdfviewActivity.class);
-//                        i.putExtra("url",x);
-//                        startActivity(i);
-//                        break;
-//                    case 6:
-//                        Intent i = new Intent(IseActivity.this, PdfviewActivity.class);
-//                        i.putExtra("url",x);
-//                        startActivity(i);
-//                        break;
-//                    case 7:
-//                        Intent i = new Intent(IseActivity.this, PdfviewActivity.class);
-//                        i.putExtra("url",x);
-//                        startActivity(i);
-//                        break;
-//                    case  8:
-//                        Intent i = new Intent(IseActivity.this, PdfviewActivity.class);
-//                        i.putExtra("url",x);
-//                        startActivity(i);
-//                        break;
-//                }
+//             Intent j = new Intent(IseActivity.this, PdfviewActivity.class);
+//             //j.putExtra("url",strings[i]);
+//             startActivity(j);
+                switch (i) {
+                    case 0:
+                        Intent j = new Intent(IseActivity.this, thsemActivity.class);
+                        j.putExtra("ctx","1");
+                        startActivity(j);
+                        break;
+                    case 1:
+                        Intent k = new Intent(IseActivity.this, fursemActivity.class);
+                        k.putExtra("ctx","1");
+                        startActivity(k);
+                        break;
+                    case 2:
+                        Intent m = new Intent(IseActivity.this, fifsemActivity.class);
+                        m.putExtra("ctx","1");
+                        startActivity(m);
+                        break;
+                    case 3:
+                        Intent n = new Intent(IseActivity.this, SixsemActivity.class);
+                        n.putExtra("ctx","1");
+                        startActivity(n);
+                        break;
+                    case 4:
+                        Intent o = new Intent(IseActivity.this, SevsemActivity.class);
+                        o.putExtra("ctx","1");
+                        startActivity(o);
+                        break;
+                    case 5:
+                        Intent p = new Intent(IseActivity.this, EighsemActivity.class);
+                        p.putExtra("ctx","1");
+                        startActivity(p);
+                        break;
+                }
+
             }
         });
 
-    }
-
-    public static String getFileNameFromURL(String url) {
-        if (url == null) {
-            return "";
-        }
-        try {
-            URL resource = new URL(url);
-            String host = resource.getHost();
-            if (host.length() > 0 && url.endsWith(host)) {
-                // handle ...example.com
-                return "";
-            }
-        }
-        catch(MalformedURLException e) {
-            return "";
-        }
-
-        int startIndex = url.lastIndexOf('/') + 1;
-        int length = url.length();
-
-        // find end index for ?
-        int lastQMPos = url.lastIndexOf("%");
-        if (lastQMPos == -1) {
-            lastQMPos = length;
-        }
-
-        // find end index for #
-        int lastHashPos = url.lastIndexOf('#');
-        if (lastHashPos == -1) {
-            lastHashPos = length;
-        }
-
-        // calculate the end index
-        int endIndex = Math.min(lastQMPos, lastHashPos);
-        return url.substring(startIndex, endIndex);
     }
 
 
@@ -279,6 +241,11 @@ public class IseActivity extends AppCompatActivity implements NavigationView.OnN
                 Intent h = new Intent(IseActivity.this, AccActivity.class);
                 startActivity(h);
                 Toast.makeText(IseActivity.this,"My Account",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.fre:
+                Intent k = new Intent(IseActivity.this, FresherActivity.class);
+                startActivity(k);
+                Toast.makeText(IseActivity.this,"Freshers",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.logout:
                 Intent i = new Intent(IseActivity.this, MainActivity.class);

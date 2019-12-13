@@ -40,7 +40,7 @@ import java.net.URLConnection;
 public class UpdateActivity extends AppCompatActivity {
 
     ProgressDialog bar;
-    private String cversion = "1.1";
+    private String cversion = "1.0";
     TextView cver,sver;
     public Button btn;
     private String sversion;

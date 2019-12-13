@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 else{
                                     Intent intToHome = new Intent(LoginActivity.this,IseActivity.class);
-                                    intToHome.putExtra("uname",emailId.getText().toString());
+//                                    intToHome.putExtra("uname",emailId.getText().toString());
                                     startActivity(intToHome);
                                 }
                                 progressDialog.dismiss();
