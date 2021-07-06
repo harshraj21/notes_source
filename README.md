@@ -14,4 +14,4 @@
 - Android Studio
 - Firebase
 
-> You are welcome to send pull request
+> You are welcome to send pull requests
