@@ -1,6 +1,6 @@
 # Notes App
 
-####### To Help Students learn during their vaccations
+###### To Help Students learn during their vaccations
 
 ***Features:-***
 1. In built PDF reader
